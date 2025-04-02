@@ -105,12 +105,18 @@ if leads_file and clients_file:
             st.success("✅ Done! Download your results below:")
             
             # Buttons with row counts next to them
+            st.write("#### ✅ Cleaned Leads")
+            st.write("This file contains the final list of leads after removing all client companies from the original file:")
             st.download_button(f"📥 Download Cleaned Leads ({final_leads_count} rows)", 
                                data=to_excel_buffer(final_leads), 
                                file_name="cleaned_leads.xlsx")
+            st.write("#### 🔍 Similar Matches to Review")
+            st.write("This file contains company names that are similar but not exact matches to the exclusion list. You might want to review these manually:")
             st.download_button(f"📥 Download Similar Matches to Review ({fuzzy_matches_count} rows)", 
                                data=to_excel_buffer(fuzzy_df), 
                                file_name="potential_matches_to_review.xlsx")
+            st.write("#### ❌ Exact Matches Removed")
+            st.write("This file lists all the company names that were an exact match with the exclusion list and were removed from the leads. This is only info, YOU DON'T NEED TO DOWNLOAD 😄.")
             st.download_button(f"📥 Download Exact Matches Removed ({exact_matches_count} rows)", 
                                data=to_excel_buffer(exact_matches_df), 
                                file_name="exact_matches_removed.xlsx")
